@@ -8,12 +8,12 @@ Choose the installation method that matches your project setup:
 If you are building a modern JavaScript web app (using Vite, Next.js, Webpack, etc.) or a backend application with Node.js, run this in your terminal:
 
 ```bash
-npm install YOUR_NPM_PACKAGE_NAME
+npm install precise-number
 ```
 
 **How to Import:**
 ```javascript
-import { PreciseNumber } from 'YOUR_NPM_PACKAGE_NAME';
+import { PreciseNumber } from 'precise-number';
 
 const a = new PreciseNumber(0.1, 'decimal');
 const b = new PreciseNumber(0.2, 'binary');
@@ -28,9 +28,9 @@ console.log(a.preciseCalc(b, '+').toString());
 If you want to download the source code files directly into your local machine using the Git command line:
 
 ```bash
-git clone https://github.com
+git clone https://github.com/rishabhhariharan25/PreciseNumber
 ```
-Simply copy the `PreciseNumber.js` file straight into your source code directory.
+Simply copy the `precise-number.js` file straight into your source code directory.
 
 ---
 
@@ -49,7 +49,7 @@ Create an `index.html` file anywhere on your computer and import your file dynam
 </head>
 <body>
     <script type="module">
-        import { PreciseNumber } from './PreciseNumber.js';
+        import { PreciseNumber } from './precise-number.js';
         
         const price = new PreciseNumber(0.1, 'decimal');
         console.log(price.toString());
