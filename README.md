@@ -68,13 +68,13 @@ Create an `index.html` file anywhere on your computer and import your file dynam
 
 It has three parts.
 
-### preciseNumber(value, numberSystem) 
+### PreciseNumber(value, numberSystem) 
 
 **The constructor.** It creates a new number, and stores it in binary by default or in decimal if specified.
 
 ### preciseCalc(other, operation)
 **The calculator.** It can make accurate decimal calculations.
-`preciseNumber(0.1, "decimal").preciseCalc(preciseNumber(0.2, "decimal"), '+');` returns $0.3$ rather than $0.30000000000000004$.
+`PreciseNumber(0.1, "decimal").preciseCalc(PreciseNumber(0.2, "decimal"), '+');` returns $0.3$ rather than $0.30000000000000004$.
 
 ### Only built in operation so far: +. DEVELOPING.
 
