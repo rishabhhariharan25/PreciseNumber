@@ -76,7 +76,7 @@ It has three parts.
 **The calculator.** It can make accurate decimal calculations.
 `PreciseNumber(0.1, "decimal").preciseCalc(PreciseNumber(0.2, "decimal"), '+');` returns $0.3$ rather than $0.30000000000000004$.
 
-<h1 style="colour:red;"> Only built in operation so far: +. DEVELOPING. </h1>
+## ⚠️⚠️ Only built in operation so far: `+`. DEVELOPING. ⚠️⚠️
 
 ### toString()
 Converts a number to a string. If it is a calculation involving numbers more than 22 decimal places apart after the point, an Imprecise flag is added to the start as calculations may not fit in at that point due to JS limitations.
