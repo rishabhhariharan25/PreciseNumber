@@ -23,14 +23,19 @@ export class PreciseNumber {
 
         const num1 = this.mode === 'decimal' ? this : new PreciseNumber(this.value, 'decimal');                 
         const num2 = other.mode === 'decimal' ? other : new PreciseNumber(other.value, 'decimal');                  
-        const targetExp = Math.min(num1.exponent, num2.exponent);                                  
+        const targetExp = Math.min(num1.exponent, num2.exponent);                        
         
         const scale1 = 10 ** (num1.exponent - targetExp);                 
-        const scale2 = 10 ** (num2.exponent - targetExp);                                  
-        const newBase = (num1.base * BigInt(scale1)) + (num2.base * BigInt(scale2));                                  
+        const scale2 = 10 ** (num2.exponent - targetExp);
+        let newBase;
+        switch(operation) {                               
+            case '+': newBase = (num1.base * BigInt(scale1)) + (num2.base * BigInt(scale2)); break;
+            case '-': newBase = (num1.base * BigInt(scale1)) - (num2.base * BigInt(scale2)); break;
+            default: throw new UnsupportedOperationError();
+        }                                 
         
         const finalValue = Number(newBase) / (10 ** Math.abs(targetExp));                 
-        return new PreciseNumber(finalValue, 'decimal');             
+        return new PreciseNumber(finalValue, 'decimal');
     }              
 
     toString() {                 
@@ -66,4 +71,11 @@ export class PreciseNumber {
         
         return `${this.value} (Binary Mode)`;
     }         
+}
+
+export class UnsupportedOperationError extends Error {
+    constructor(operation) {
+        super(`Unsupported operation: ${operation}`);
+        this.name = 'UnsupportedOperationError';
+    }
 }
