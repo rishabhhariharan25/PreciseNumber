@@ -35,7 +35,7 @@ Simply copy the `precise-number.js` file straight into your source code director
 ### 3. Via Web/Browser (No Terminal / Quick Prototyping)
 You don't need a development environment or build tools to test or use this class. You can download or copy the code straight out of GitHub.
 
-#### Option A: Vanilla HTML Script Tag
+#### Option A: Vanilla HTML `<script>` Tag
 Create an `index.html` file anywhere on your computer and import your file dynamically as an ES Module:
 
 ```html
@@ -75,8 +75,6 @@ It has three parts.
 ### preciseCalc(other, operation)
 **The calculator.** It can make accurate decimal calculations.
 `PreciseNumber(0.1, "decimal").preciseCalc(PreciseNumber(0.2, "decimal"), '+');` returns $0.3$ rather than $0.30000000000000004$.
-
-## ⚠️⚠️ Only built in operations so far: `+` and `-`. DEVELOPING. ⚠️⚠️
 
 ### toString()
 Converts a number to a string. If it is a calculation involving numbers more than 22 decimal places apart after the point, an Imprecise flag is added to the start as calculations may not fit in at that point due to JS limitations.
