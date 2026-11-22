@@ -18,24 +18,41 @@ export class PreciseNumber {
 
     preciseCalc(other, operation) {                 
         if (this.mode === 'binary' && other.mode === 'binary') {                 
-            if (operation === '+') return new PreciseNumber(this.value + other.value, 'binary');                 
+            if (operation === '+') return new PreciseNumber(this.value + other.value, 'binary'); 
+            else if (operation === '-') return new PreciseNumber(this.value - other.value, 'binary');
+            else if (operation === '*' || operation === '×') return new PreciseNumber(this.value * other.value, 'binary');
+            else if (operation === '/' || operation === '÷') return new PreciseNumber(this.value / other.value, 'binary');                
+            else throw new UnsupportedOperationError(operation);
         }                  
 
         const num1 = this.mode === 'decimal' ? this : new PreciseNumber(this.value, 'decimal');                 
         const num2 = other.mode === 'decimal' ? other : new PreciseNumber(other.value, 'decimal');                  
-        const targetExp = Math.min(num1.exponent, num2.exponent);                        
+        let targetExp = Math.min(num1.exponent, num2.exponent);                        
         
         const scale1 = 10 ** (num1.exponent - targetExp);                 
         const scale2 = 10 ** (num2.exponent - targetExp);
-        let newBase;
+        let newBase = 0n;
         switch(operation) {                               
             case '+': newBase = (num1.base * BigInt(scale1)) + (num2.base * BigInt(scale2)); break;
             case '-': newBase = (num1.base * BigInt(scale1)) - (num2.base * BigInt(scale2)); break;
-            default: throw new UnsupportedOperationError();
-        }                                 
+            case '*': case '×': 
+                newBase = num1.base * num2.base; 
+                targetExp = num1.exponent + num2.exponent;
+                break;
+            case '/': case '÷':
+                if(num2.base === 0n) throw new RangeError('Division by zero');
+                newBase = (num1.base * (10n ** 22)) / num2.base;
+                targetExp = num1.exponent - num2.exponent - 22;
+                break;
+            default: throw new UnsupportedOperationError(operation);
+        }
         
-        const finalValue = Number(newBase) / (10 ** Math.abs(targetExp));                 
-        return new PreciseNumber(finalValue, 'decimal');
+        const finalValue = resultExp >= 0
+            ? PreciseNumber((newBase) * (10 ** resultExp), 'decimal')
+            : PreciseNumber((newBase) / (10 ** Math.abs(resultExp)), 'decimal');
+
+return new PreciseNumber(finalValue, 'decimal');
+
     }              
 
     toString() {                 
