@@ -57,7 +57,7 @@ Create an `index.html` file anywhere on your computer and import your file dynam
 ```
 
 #### Option B: Raw Browser Console
-1. Open the `PreciseNumber.js` file here on GitHub.
+1. Open the `precise-number.js` file here on GitHub.
 2. Click the **Raw** button to get the clean text.
 3. Copy the entire class definition code.
 4. Press `F12` or right-click your browser page -> **Inspect** -> navigate to the **Console** tab.
